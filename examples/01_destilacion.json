@@ -1,0 +1,12 @@
+{
+  "title": "Ejemplo 1 — Columna de destilación etanol-agua (sin reacción)",
+  "statement": "Se alimentan 1000 kg/h de una mezcla etanol-agua con 40 % en masa de etanol a una columna de destilación. El destilado contiene 90 % en masa de etanol y el fondo 5 % en masa de etanol. Calcule los flujos másicos del destilado y del fondo.",
+  "flow_unit": "kg/h",
+  "components": [{"name": "Etanol", "formula": "C2H5OH"}, {"name": "Agua", "formula": "H2O"}],
+  "streams": {
+    "1": {"name": "Alimentación", "total": "1000 kg/h", "fractions": {"Etanol": 0.40, "Agua": 0.60}},
+    "2": {"name": "Destilado", "fractions": {"Etanol": 0.90, "Agua": 0.10}},
+    "3": {"name": "Fondo", "fractions": {"Etanol": 0.05, "Agua": 0.95}}
+  },
+  "units": [{"name": "Columna", "type": "separator", "inputs": [1], "outputs": [2, 3]}]
+}

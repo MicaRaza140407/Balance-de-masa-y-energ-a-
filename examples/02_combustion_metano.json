@@ -1,0 +1,23 @@
+{
+  "title": "Ejemplo 2 — Combustión completa de metano con 20 % de aire en exceso",
+  "statement": "Se queman 100 mol/h de CH4 con aire (21 % mol O2, 79 % mol N2) en una cantidad que representa 20 % de exceso respecto al requerido para la combustión completa. Toda la alimentación de metano se consume. Calcule el flujo y la composición de los gases de salida.",
+  "flow_unit": "mol/h",
+  "components": [{"name": "CH4"}, {"name": "O2"}, {"name": "N2"}, {"name": "CO2"}, {"name": "H2O"}],
+  "streams": {
+    "1": {"name": "Metano", "components": ["CH4"], "total": "100 mol/h"},
+    "2": {"name": "Aire", "components": ["O2", "N2"], "fraction_basis": "mole", "fractions": {"O2": 0.21, "N2": 0.79}},
+    "3": {"name": "Gases de combustión", "components": ["CH4", "O2", "N2", "CO2", "H2O"]}
+  },
+  "units": [{"name": "Horno", "type": "reactor", "inputs": [1, 2], "outputs": [3]}],
+  "reactions": [{"id": "R1", "unit": "Horno", "equation": "CH4 + 2 O2 -> CO2 + 2 H2O",
+                 "conversion": {"reactant": "CH4", "value": 1.0}}],
+  "ratios": [{"a": {"stream": 2, "comp": "O2"}, "b": {"stream": 1, "comp": "CH4"}, "value": 2.4,
+              "text": "O2 alimentado = 1.20 × (O2 teórico). El O2 teórico es 2 mol O2 por mol CH4 (estequiometría), luego n_O2,2 = 1.2 × 2 × n_CH4,1 = 2.4 n_CH4,1."}],
+  "energy": {
+    "Tref": 25,
+    "streams": {"1": {"T": 25, "phases": {"CH4": "gas"}},
+                "2": {"T": 25, "phases": {"O2": "gas", "N2": "gas"}},
+                "3": {"T": 300, "phases": {"CH4": "gas", "O2": "gas", "N2": "gas", "CO2": "gas", "H2O": "gas"}}},
+    "units": {"Horno": {"Ws": 0}}
+  }
+}
