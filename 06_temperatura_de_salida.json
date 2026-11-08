@@ -1,0 +1,14 @@
+{
+  "title": "Ejemplo 6 — Temperatura de salida conocido el calor (T desconocida)",
+  "statement": "A un intercambiador entran 100 kg/h de agua líquida a 20 °C y se le suministran 25 112.4 kJ/h. Calcule la temperatura de salida (el agua permanece líquida).",
+  "flow_unit": "kg/h",
+  "components": [{"name": "H2O"}],
+  "streams": {"1": {"name": "Agua fría", "total": "100 kg/h"}, "2": {"name": "Agua caliente"}},
+  "units": [{"name": "Calentador", "type": "generic", "inputs": [1], "outputs": [2]}],
+  "energy": {
+    "Tref": 25,
+    "streams": {"1": {"T": 20, "phases": {"H2O": "liquid"}}, "2": {"T": 50, "phases": {"H2O": "liquid"}}},
+    "solve_T": {"unit": "Calentador", "stream": 2, "Q": 25112.4, "bracket": [0, 99]},
+    "units": {"Calentador": {"Ws": 0}}
+  }
+}

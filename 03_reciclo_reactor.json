@@ -1,0 +1,19 @@
+{
+  "title": "Ejemplo 3 — Reactor con separador y reciclo (A → B)",
+  "statement": "A una reacción A → B (isomerización de n-butano a isobutano) se alimentan 100 mol/h de A fresco. La conversión por paso en el reactor es 20 %. El separador entrega B puro como producto y recircula todo el A sin reaccionar, que se mezcla con la alimentación fresca. Calcule la alimentación al reactor, el flujo de reciclo y el flujo de producto.",
+  "flow_unit": "mol/h",
+  "components": [{"name": "A", "formula": "C4H10"}, {"name": "B", "formula": "C4H10"}],
+  "streams": {
+    "1": {"name": "Alimentación fresca", "components": ["A"], "total": "100 mol/h"},
+    "2": {"name": "Alimentación al reactor", "components": ["A", "B"], "flows": {"B": 0}},
+    "3": {"name": "Salida del reactor", "components": ["A", "B"]},
+    "4": {"name": "Producto", "components": ["B"]},
+    "5": {"name": "Reciclo", "components": ["A"]}
+  },
+  "units": [
+    {"name": "Mezclador", "type": "mixer", "inputs": [1, 5], "outputs": [2]},
+    {"name": "Reactor", "type": "reactor", "inputs": [2], "outputs": [3]},
+    {"name": "Separador", "type": "separator", "inputs": [3], "outputs": [4, 5]}
+  ],
+  "reactions": [{"id": "R1", "unit": "Reactor", "equation": "A -> B", "conversion": {"reactant": "A", "value": 0.20}}]
+}
